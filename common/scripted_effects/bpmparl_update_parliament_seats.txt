@@ -3,10 +3,20 @@ bpmparl_update_parliament_seats = {
         name = bpm_allocated_seats
         value = 0
     }
-    bpmparl_update_parliament_seats_subp = { COLOR = yellow PARTY = liberal }
-    bpmparl_update_parliament_seats_subp = { COLOR = blue PARTY = conservative }
-    bpmparl_update_parliament_seats_subp = { COLOR = green PARTY = agrarian }
-    bpmparl_update_parliament_seats_subp = { COLOR = red PARTY = social_democrat }
+    every_scope_state = {
+        set_variable = {
+            name = bpm_total_seats_in_state
+            value = {
+                value = bpmparl_number_of_seats
+                multiply = bpmparl_state_pop_percentage
+                floor = yes
+            }
+        }
+    }
+    bpmparl_update_parliament_seats_proportional = { COLOR = yellow PARTY = liberal }
+    bpmparl_update_parliament_seats_proportional = { COLOR = blue PARTY = conservative }
+    bpmparl_update_parliament_seats_proportional = { COLOR = green PARTY = agrarian }
+    bpmparl_update_parliament_seats_proportional = { COLOR = red PARTY = social_democrat }
 
     set_variable = {
         name = bpm_grey_parl_min
@@ -18,7 +28,7 @@ bpmparl_update_parliament_seats = {
     }
 }
 
-bpmparl_update_parliament_seats_subp = {
+bpmparl_update_parliament_seats_proportional = {
     set_variable = {
         name = bpm_$COLOR$_parl_max
         value = 0
@@ -55,6 +65,82 @@ bpmparl_update_parliament_seats_subp = {
         change_variable = {
             name = bpm_allocated_seats
             add = var:bpm_seat_allocation
+        }
+        set_variable = {
+            name = bpm_$COLOR$_parl_max
+            value = var:bpm_allocated_seats
+        }
+    }
+}
+
+bpmparl_update_parliament_seats_majoritarian_fptp = {
+    set_variable = {
+        name = bpm_$COLOR$_parl_max
+        value = 0
+    }
+    set_variable  = {
+        name = bpm_$COLOR$_parl_min
+        value = var:bpm_allocated_seats
+    }
+
+    if = {
+        limit = {
+            has_variable = bpm_party_$PARTY$_voting_power
+        }
+        if = {
+            limit = {
+                var:bpm_allocated_seats = 0
+            }
+            set_variable = {
+                name = bpm_$COLOR$_parl_min
+                value = -1
+            }
+        }
+        set_variable = {
+            name = bpm_current_seat_allocation
+            value = 0
+        }
+        every_scope_state = {
+            save_scope_as = target_state
+            owner = {
+                change_variable = {
+                    name = bpm_current_seat_allocation
+                    add = {
+                        value = prev.var:bpm_total_seats_in_state
+                        multiply = {
+                            value = var:bpm_party_$PARTY$_voting_power
+                            add = {
+                                value = 0.5
+                                multiply = py:$PARTY$_party.bpmparl_pol_strength_share
+                                multiply = py:$PARTY$_party.bpmparl_pol_strength_share
+                                divide = var:bpm_party_$PARTY$_voting_power
+                            }
+                        }
+                    }
+                }
+                if = {
+                    limit = {
+                        save_temporary_scope_value_as = {
+                            name = compare_value
+                            value = py:$PARTY$_party.bpmparl_pol_strength_share
+                        }
+                        any_active_party = {
+                            bpmparl_pol_strength_share > scope:compare_value
+                        }
+                    }
+                    change_variable = {
+                        name = bpm_current_seat_allocation
+                        multiply = bpmparl_seat_concentration_factor
+                    }
+                }
+            }
+        }
+        change_variable = {
+            name = bpm_allocated_seats
+            add = {
+                value = var:bpm_current_seat_allocation
+                floor = yes
+            }
         }
         set_variable = {
             name = bpm_$COLOR$_parl_max

@@ -1,4 +1,5 @@
 bpmparl_number_of_seats = 304
+bpmparl_seat_concentration_factor = 0.985
 
 bpmparl_state_pop_percentage = {
     value = state_population
