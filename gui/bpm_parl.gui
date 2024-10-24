@@ -7,6 +7,8 @@ types politics_panel_types
 		
 		using = entry_bg_fancy
 
+		visible = "[GreaterThan_CFixedPoint(Country.MakeScope.Var('bpm_allocated_seats').GetValue, '(CFixedPoint)5')]"
+
 		textbox = {
 			layoutpolicy_horizontal = expanding
 			text = "#v#b 300 #!#!"
