@@ -1,0 +1,27 @@
+types politics_panel_types
+{
+
+	type parliament_item = widget {
+		size = { 620 230 }
+		using = tooltip_below
+		
+		using = entry_bg_fancy
+
+		textbox = {
+			layoutpolicy_horizontal = expanding
+			text = "#v#b 300 #!#!"
+			using = fontsize_mega
+			align = left|nobaseline
+			position = { 285 200 }
+		}
+	
+		bpm_parliament_visual_red = {}
+		bpm_parliament_visual_green = {}
+		bpm_parliament_visual_yellow = {}
+		bpm_parliament_visual_blue = {}
+		bpm_parliament_visual_grey = {}
+
+
+
+	}
+}

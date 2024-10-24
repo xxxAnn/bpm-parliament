@@ -1,0 +1,64 @@
+bpmparl_update_parliament_seats = {
+    set_variable = {
+        name = bpm_allocated_seats
+        value = 0
+    }
+    bpmparl_update_parliament_seats_subp = { COLOR = yellow PARTY = liberal }
+    bpmparl_update_parliament_seats_subp = { COLOR = blue PARTY = conservative }
+    bpmparl_update_parliament_seats_subp = { COLOR = green PARTY = agrarian }
+    bpmparl_update_parliament_seats_subp = { COLOR = red PARTY = social_democrat }
+
+    set_variable = {
+        name = bpm_grey_parl_min
+        value = var:bpm_allocated_seats
+    }
+    set_variable = {
+        name = bpm_grey_parl_max
+        value = 1000
+    }
+}
+
+bpmparl_update_parliament_seats_subp = {
+    set_variable = {
+        name = bpm_$COLOR$_parl_max
+        value = 0
+    }
+    set_variable  = {
+        name = bpm_$COLOR$_parl_min
+        value = var:bpm_allocated_seats
+    }
+    if = {
+        limit = {
+            var:bpm_allocated_seats = 0
+        }
+        set_variable = {
+            name = bpm_$COLOR$_parl_min
+            value = -1
+        }
+    }
+    if = {
+        limit = {
+            has_variable = bpm_party_$PARTY$_voting_power
+        }
+        set_variable = {
+            name = bpm_seat_allocation
+            value = 304
+        }
+        change_variable = {
+            name = bpm_seat_allocation
+            multiply = var:bpm_party_$PARTY$_voting_power
+        }
+        round_variable = {
+            name = bpm_seat_allocation
+            nearest = 1
+        }
+        change_variable = {
+            name = bpm_allocated_seats
+            add = var:bpm_seat_allocation
+        }
+        set_variable = {
+            name = bpm_$COLOR$_parl_max
+            value = var:bpm_allocated_seats
+        }
+    }
+}

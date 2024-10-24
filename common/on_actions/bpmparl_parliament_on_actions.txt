@@ -1,0 +1,11 @@
+on_monthly_pulse_country = {
+    on_actions = {
+        bpmparl_parliament_update_on_action
+    }
+}
+
+bpmparl_parliament_update_on_action = {
+    effect = {
+        bpmparl_update_parliament_seats = yes
+    }
+}

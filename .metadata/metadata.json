@@ -1,0 +1,13 @@
+{
+    "name": "BPM-ParliamentGraph",
+    "id": "",
+    "version": "0.1.0",
+    "supported_game_version": "1.7.*",
+    "short_description": "Adds a parliament graph to BPM. Might add other things later too.",
+    "thumbnail": "thumbnail.png",
+    "tags": [],
+    "relationships": [],
+    "game_custom_data": {
+      "multiplayer_synchronized": true
+    }
+  }
