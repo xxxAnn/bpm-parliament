@@ -187,7 +187,7 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                     add = {
                         value = prev.var:bpm_total_seats_in_state
                         multiply = bpmparl_square_root
-                        multiply = 1.5
+                        ceiling = yes
                     }
                 }
                 #if = {
