@@ -1,4 +1,4 @@
-on_monthly_pulse_country = {
+on_election_campaign_end = {
     on_actions = {
         bpmparl_parliament_update_on_action
     }
@@ -8,18 +8,9 @@ bpmparl_parliament_update_on_action = {
     effect = {
         if = {
             limit = {
-                NOT = {
-                    has_variable = bpm_has_election_results
-                }
+                is_player = yes
             }
-            set_variable = bpm_has_election_results
-            set_variable = {
-                name = polhook_main_reload
-                days = 1
-            }
-        }
-        else = {
-            bpmparl_update_parliament_seats = yes
+            bpmparl_conditional_update_seats = yes
         }
     }
 }

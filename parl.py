@@ -87,4 +87,4 @@ types politics_panel_types
 
 
 with open("output.txt", "w") as f:
-    f.write(make_parliaments(["yellow", "blue", "green", "red", "grey"]))
+    f.write(make_parliaments(["yellow", "blue", "green", "red", "grey", "orange", "purple"]))

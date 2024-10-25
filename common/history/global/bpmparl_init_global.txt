@@ -1,0 +1,5 @@
+GLOBAL = {
+    every_country = {
+        trigger_event = { id = bpmparl_utils.2 days = 1}
+    }
+}
