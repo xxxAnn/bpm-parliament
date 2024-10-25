@@ -1,0 +1,39 @@
+bpmparl_set_party_vote = {
+    set_variable = {
+        name = bpmparl_total_yea_votes
+        value = 0
+    }
+    bpmparl_set_party_vote_subp = { COLOR = purple PARTY = reactionary }
+    bpmparl_set_party_vote_subp = { COLOR = blue PARTY = conservative }
+    bpmparl_set_party_vote_subp = { COLOR = yellow PARTY = liberal }
+    bpmparl_set_party_vote_subp = { COLOR = green PARTY = agrarian }
+    bpmparl_set_party_vote_subp = { COLOR = orange PARTY = radical }
+    bpmparl_set_party_vote_subp = { COLOR = red PARTY = social_democrat }    
+    set_variable = {
+        name = bpmparl_total_nay_votes
+        value = {
+            value = 300
+            subtract = var:bpmparl_total_yea_votes
+            min = 0
+            max = 300
+        }
+    }
+}
+
+bpmparl_set_party_vote_subp = {
+    set_variable = {
+        name = bpmparl_$PARTY$_yea_votes
+        value = {
+            value = py:$PARTY$_party.bpmparl_party_yea_vote_percent
+            multiply = {
+                value = var:bpm_$COLOR$_parl_max
+                subtract = var:bpm_$COLOR$_parl_min
+            }
+            ceiling = yes
+        }
+    }
+    change_variable = {
+        name = bpmparl_total_yea_votes
+        add = var:bpmparl_$PARTY$_yea_votes
+    }
+}

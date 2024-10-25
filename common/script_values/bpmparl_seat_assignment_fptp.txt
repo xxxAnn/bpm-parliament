@@ -2,6 +2,28 @@ bpmparl_number_of_seats = 304
 bpmparl_seat_concentration_factor = 0.985
 bpmparl_majoritarian_weight = 0.1
 
+bpmparl_party_total_clout = {
+    value = 0
+    every_member = {
+        limit = {
+            is_marginal = no
+        }
+        add = ig_clout
+    }
+}
+
+bpmparl_party_yea_vote_percent = {
+    value = 0
+    every_member = {
+        limit = {
+            is_marginal = no
+            bpm_ig_law_support_total_value > 0
+        }
+        add = ig_clout
+    }
+    divide = bpmparl_party_total_clout
+}
+
 bpmparl_state_pop_percentage = {
     value = state_population
     divide = owner.total_population
