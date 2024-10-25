@@ -49,6 +49,7 @@ bpmparl_update_parliament_seats = {
     else_if = {
         limit = {
             # default use majoritarian fptp
+            #var:bpm_election_system = flag:fptp
             always = yes
         }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = purple PARTY = reactionary }
@@ -61,6 +62,7 @@ bpmparl_update_parliament_seats = {
     else_if = {
         limit = {
             var:bpm_election_system = flag:electoral_college
+            #always = yes
         }
         every_scope_state = {
             set_variable = {
@@ -187,6 +189,13 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                     add = {
                         value = prev.var:bpm_total_seats_in_state
                         multiply = bpmparl_square_root
+                        multiply = {
+                            value = 1000
+                            # Anti-independent factor
+                            add = 30
+                            # --
+                            divide = 1000
+                        }
                         ceiling = yes
                     }
                 }
