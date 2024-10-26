@@ -4,7 +4,7 @@
     "version": "0.1.0",
     "supported_game_version": "1.7.*",
     "short_description": "Adds a parliament graph to BPM. Might add other things later too.",
-    "thumbnail": "thumbnail.png",
+    "picture": "thumbnail.png",
     "tags": [],
     "relationships": [],
     "game_custom_data": {
