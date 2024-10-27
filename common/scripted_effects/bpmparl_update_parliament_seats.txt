@@ -44,7 +44,8 @@ bpmparl_update_parliament_seats = {
         bpmparl_update_parliament_seats_proportional = { COLOR = yellow PARTY = liberal }
         bpmparl_update_parliament_seats_proportional = { COLOR = green PARTY = agrarian }
         bpmparl_update_parliament_seats_proportional = { COLOR = orange PARTY = radical }
-        bpmparl_update_parliament_seats_proportional = { COLOR = red PARTY = social_democrat }    
+        bpmparl_update_parliament_seats_proportional = { COLOR = pink PARTY = social_democrat }
+        bpmparl_update_parliament_seats_proportional = { COLOR = red PARTY = communist }    
     }
     else_if = {
         limit = {
@@ -52,12 +53,27 @@ bpmparl_update_parliament_seats = {
             #var:bpm_election_system = flag:fptp
             always = yes
         }
+        every_scope_state = {
+            set_variable = {
+                name = bpm_state_total_pts
+                value = 0
+            }
+        }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = reactionary }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = conservative }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = liberal }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = agrarian }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = radical }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = social_democrat }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = communist }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = purple PARTY = reactionary }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = blue PARTY = conservative }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = yellow PARTY = liberal }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = green PARTY = agrarian }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = orange PARTY = radical }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = red PARTY = social_democrat }    
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = pink PARTY = social_democrat }    
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = red PARTY = communist }    
+
     }
     else_if = {
         limit = {
@@ -84,12 +100,14 @@ bpmparl_update_parliament_seats = {
         bpmparl_update_parliament_seats_electoral_college_pre = { PARTY = agrarian }
         bpmparl_update_parliament_seats_electoral_college_pre = { PARTY = radical }
         bpmparl_update_parliament_seats_electoral_college_pre = { PARTY = social_democrat }
+        bpmparl_update_parliament_seats_electoral_college_pre = { PARTY = communist }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = purple PARTY = reactionary }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = blue PARTY = conservative }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = yellow PARTY = liberal }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = green PARTY = agrarian }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = orange PARTY = radical }
-        bpmparl_update_parliament_seats_electoral_college = { COLOR = red PARTY = social_democrat }
+        bpmparl_update_parliament_seats_electoral_college = { COLOR = pink PARTY = social_democrat }
+        bpmparl_update_parliament_seats_electoral_college = { COLOR = red PARTY = communist }
     }
 
     set_variable = {
@@ -147,6 +165,33 @@ bpmparl_update_parliament_seats_proportional = {
     }
 }
 
+bpmparl_update_parliament_seats_majoritarian_fptp_pre = {
+    if = {
+        limit = {
+            has_variable = bpm_party_$PARTY$_voting_power
+        }
+    
+        every_scope_state = {
+            save_scope_as = target_state
+            owner = {
+                set_variable = {
+                    name = bpm_this_party_state_pts
+                    value = py:$PARTY$_party.bpmparl_pol_strength_share
+                }
+            }
+            #debug_log = owner.var:bpm_this_party_state_pts
+            set_variable = {
+                name = bpm_state_pts_$PARTY$
+                value = owner.var:bpm_this_party_state_pts
+            }
+            change_variable = {
+                name = bpm_state_total_pts
+                add = owner.var:bpm_this_party_state_pts
+            }
+        }
+    }
+}
+
 bpmparl_update_parliament_seats_majoritarian_fptp = {
     set_variable = {
         name = bpm_$COLOR$_parl_max
@@ -176,11 +221,20 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
         }
         every_scope_state = {
             save_scope_as = target_state
+            set_variable = {
+                name = bpm_$PARTY$_votes_in_state
+                value = {
+                    value = var:bpm_state_pts_$PARTY$
+                    divide = var:bpm_state_total_pts
+                }
+            }
+            remove_variable = bpm_state_pts_$PARTY$
+
             owner = {
                 save_scope_value_as = {
                     name = value
                     value = {
-                        value = py:$PARTY$_party.bpmparl_pol_strength_share
+                        value = scope:target_state.var:bpm_$PARTY$_votes_in_state
                         multiply = var:bpm_party_$PARTY$_voting_power
                     }
                 }
@@ -189,13 +243,6 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                     add = {
                         value = prev.var:bpm_total_seats_in_state
                         multiply = bpmparl_square_root
-                        multiply = {
-                            value = 1000
-                            # Anti-independent factor
-                            add = 30
-                            # --
-                            divide = 1000
-                        }
                         ceiling = yes
                     }
                 }

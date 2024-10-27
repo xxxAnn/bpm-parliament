@@ -24,5 +24,7 @@ types politics_panel_types
 		bpm_parliament_visual_grey = {}
 		bpm_parliament_visual_purple = {}
 		bpm_parliament_visual_orange = {}
+		bpm_parliament_visual_pink = {}
+
 	}
 }
