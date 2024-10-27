@@ -247,9 +247,9 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                     add = {
                         value = prev.var:bpm_total_seats_in_state
                         multiply = bpmparl_square_root
-                        ceiling = yes
                     }
                 }
+                round_variable = { name = bpm_current_seat_allocation nearest = 1 }
                 #if = {
                 #    limit = {
                 #        save_temporary_scope_value_as = {
@@ -260,10 +260,6 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                 #            bpmparl_pol_strength_share > scope:compare_value
                 #        }
                 #    }
-                    change_variable = {
-                        name = bpm_current_seat_allocation
-                        multiply = 0.99
-                    }
                 #}
             }
         }
