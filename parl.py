@@ -35,15 +35,23 @@ def draw(r, color, xcenter=XCENTER, ycenter=YCENTER):
                 "icon": { 
                     "texture": f"gfx/interface/icons/{color}_circle.dds",
                     "size": r"{10 10}",
-                    "visible": f"\"[And(GreaterThanOrEqualTo_CFixedPoint(Country.MakeScope.Var('bpm_{color}_parl_max').GetValue, '(CFixedPoint){i}'), LessThan_CFixedPoint(Country.MakeScope.Var('bpm_{color}_parl_min').GetValue, '(CFixedPoint){i}'))]\"",
+                    "visible": f"\"[And(GreaterThanOrEqualTo_CFixedPoint(Country.MakeScope.Var('bpm_{color}_parl_max').GetValue, '(CFixedPoint){i}'), LessThan_CFixedPoint(Country.MakeScope.Var('bpm_{color}_parl_min').GetValue, '(CFixedPoint){i+1}'))]\"",
                     "position": r"{" + f"{int(x)} {int(y)}" + r"}"
                 }
             }
         )
     return result
 
+def calculate_n(start, number):
+    s = [start]
+    v = start
+    for i in range(1, number):
+        s.append(v := ( v - (4 if i % 2 == 1 else 3) ))
 
-def creator(start=200, step=12, n=[50, 46, 43, 39, 36, 32, 29, 25], color="red"):
+    return s
+
+
+def creator(start=200, step=12, n=calculate_n(49, 8), color="red"):
     last_r = generate_all(start, step, n)
     return draw(last_r, color)
 
@@ -88,3 +96,4 @@ types politics_panel_types
 
 with open("output.txt", "w") as f:
     f.write(make_parliaments(["yellow", "blue", "green", "red", "grey", "orange", "purple", "pink"]))
+

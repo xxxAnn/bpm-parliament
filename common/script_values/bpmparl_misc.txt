@@ -25,6 +25,6 @@ bpmparl_number_of_seats = {
         limit = {
             always = yes
         }
-        add = 306
+        add = 300
     }
 }

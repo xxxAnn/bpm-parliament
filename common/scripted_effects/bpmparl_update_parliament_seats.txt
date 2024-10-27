@@ -162,6 +162,10 @@ bpmparl_update_parliament_seats_proportional = {
             name = bpm_$COLOR$_parl_max
             value = var:bpm_allocated_seats
         }
+        change_variable = {
+            name = bpm_allocated_seats
+            add = 1
+        }
     }
 }
 
@@ -258,7 +262,7 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                 #    }
                     change_variable = {
                         name = bpm_current_seat_allocation
-                        multiply = 1
+                        multiply = 0.99
                     }
                 #}
             }
@@ -273,6 +277,10 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
         set_variable = {
             name = bpm_$COLOR$_parl_max
             value = var:bpm_allocated_seats
+        }
+        change_variable = {
+            name = bpm_allocated_seats
+            add = 1
         }
     }
 }
@@ -385,6 +393,10 @@ bpmparl_update_parliament_seats_electoral_college = {
         set_variable = {
             name = bpm_$COLOR$_parl_max
             value = var:bpm_allocated_seats
+        }
+        change_variable = {
+            name = bpm_allocated_seats
+            add = 1
         }
     }
 }
