@@ -19,22 +19,53 @@ bpmparl_set_party_vote = {
             max = bpmparl_number_of_seats
         }
     }
+    if = {
+		limit = {
+			any_active_party = {
+				count > 0
+			}
+		}
+		set_variable = { name = bpm_law_enactment_yea_votes_cached value = {
+			value = var:bpmparl_total_yea_votes
+            divide = bpmparl_number_of_seats
+		} }
+        set_variable = { name = bpm_law_enactment_nay_votes_cached value = {
+            value = var:bpmparl_total_nay_votes
+            divide = bpmparl_number_of_seats
+        } }
+	}
 }
 
 bpmparl_set_party_vote_subp = {
-    set_variable = {
-        name = bpmparl_$PARTY$_yea_votes
-        value = {
-            value = py:$PARTY$_party.bpmparl_party_yea_vote_percent
-            multiply = {
-                value = var:bpm_$COLOR$_parl_max
-                subtract = var:bpm_$COLOR$_parl_min
+    if = {
+        limit = {
+            any_active_party = {
+                count > 0
             }
-            ceiling = yes
         }
-    }
-    change_variable = {
-        name = bpmparl_total_yea_votes
-        add = var:bpmparl_$PARTY$_yea_votes
+        set_variable = {
+            name = bpmparl_$PARTY$_yea_votes
+            value = {
+                value = py:$PARTY$_party.bpmparl_party_yea_vote_percent
+                multiply = {
+                    value = var:bpm_$COLOR$_parl_max
+                    subtract = var:bpm_$COLOR$_parl_min
+                }
+                ceiling = yes
+            }
+        }
+        change_variable = {
+            name = bpmparl_total_yea_votes
+            add = var:bpmparl_$PARTY$_yea_votes
+        }
+    } 
+    else = {
+        set_variable = {
+            name = bpmparl_$PARTY$_yea_votes
+            value = {
+                value = py:$PARTY$_party.bpmparl_party_yea_vote_percent
+                multiply = py:$PARTY$_party.bpmparl_party_total_clout
+            }
+        }
     }
 }

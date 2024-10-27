@@ -49,34 +49,6 @@ bpmparl_update_parliament_seats = {
     }
     else_if = {
         limit = {
-            # default use majoritarian fptp
-            #var:bpm_election_system = flag:fptp
-            always = yes
-        }
-        every_scope_state = {
-            set_variable = {
-                name = bpm_state_total_pts
-                value = 0
-            }
-        }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = reactionary }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = conservative }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = liberal }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = agrarian }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = radical }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = social_democrat }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = communist }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = purple PARTY = reactionary }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = blue PARTY = conservative }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = yellow PARTY = liberal }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = green PARTY = agrarian }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = orange PARTY = radical }
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = pink PARTY = social_democrat }    
-        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = red PARTY = communist }    
-
-    }
-    else_if = {
-        limit = {
             var:bpm_election_system = flag:electoral_college
             #always = yes
         }
@@ -109,6 +81,35 @@ bpmparl_update_parliament_seats = {
         bpmparl_update_parliament_seats_electoral_college = { COLOR = pink PARTY = social_democrat }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = red PARTY = communist }
     }
+    else_if = {
+        limit = {
+            # default use majoritarian fptp
+            #var:bpm_election_system = flag:fptp
+            always = yes
+        }
+        every_scope_state = {
+            set_variable = {
+                name = bpm_state_total_pts
+                value = 0
+            }
+        }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = reactionary }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = conservative }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = liberal }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = agrarian }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = radical }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = social_democrat }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = communist }
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = purple PARTY = reactionary }
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = blue PARTY = conservative }
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = yellow PARTY = liberal }
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = green PARTY = agrarian }
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = orange PARTY = radical }
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = pink PARTY = social_democrat }    
+        bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = red PARTY = communist }    
+
+    }
+
 
     set_variable = {
         name = bpm_grey_parl_min
@@ -118,12 +119,24 @@ bpmparl_update_parliament_seats = {
         name = bpm_grey_parl_max
         value = 1000
     }
+
+    if = {
+        limit = {
+            any_active_party = {
+                count = 0
+            }
+        }
+        set_variable = {
+            name = bpm_allocated_seats
+            value = 0
+        }
+    }
 }
 
 bpmparl_update_parliament_seats_proportional = {
     set_variable = {
         name = bpm_$COLOR$_parl_max
-        value = 0
+        value = -1
     }
     set_variable  = {
         name = bpm_$COLOR$_parl_min
@@ -199,7 +212,7 @@ bpmparl_update_parliament_seats_majoritarian_fptp_pre = {
 bpmparl_update_parliament_seats_majoritarian_fptp = {
     set_variable = {
         name = bpm_$COLOR$_parl_max
-        value = 0
+        value = -1
     }
     set_variable  = {
         name = bpm_$COLOR$_parl_min
@@ -249,7 +262,7 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                         multiply = bpmparl_square_root
                     }
                 }
-                round_variable = { name = bpm_current_seat_allocation nearest = 1 }
+                set_variable = { name = bpm_current_seat_allocation value = { value = var:bpm_current_seat_allocation round = yes } }
                 #if = {
                 #    limit = {
                 #        save_temporary_scope_value_as = {
@@ -333,7 +346,7 @@ bpmparl_update_parliament_seats_electoral_college_pre = {
 bpmparl_update_parliament_seats_electoral_college = {
     set_variable = {
         name = bpm_$COLOR$_parl_max
-        value = 0
+        value = -1
     }
     set_variable  = {
         name = bpm_$COLOR$_parl_min

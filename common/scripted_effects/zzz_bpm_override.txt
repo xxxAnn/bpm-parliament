@@ -3,4 +3,16 @@ bpm_update_law_enactment_variables_modifiers = {
 	bpm_cache_nay_votes = yes
 	bpm_apply_law_vote_contribution_modifier = yes
     bpmparl_set_party_vote = yes
+
+}
+
+bpm_cache_yea_votes = {
+	set_variable = { name = bpm_law_enactment_yea_votes_cached value = 0 }
+	bpmparl_set_party_vote = yes
+
+}
+
+bpm_cache_nay_votes = {
+	set_variable = { name = bpm_law_enactment_nay_votes_cached value = 0 }
+    bpmparl_set_party_vote = yes
 }
