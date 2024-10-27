@@ -1,4 +1,3 @@
-bpmparl_number_of_seats = 304
 bpmparl_seat_concentration_factor = 0.985
 bpmparl_majoritarian_weight = 0.1
 

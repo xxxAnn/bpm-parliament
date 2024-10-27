@@ -144,7 +144,7 @@ bpmparl_update_parliament_seats_proportional = {
         }
         set_variable = {
             name = bpm_seat_allocation
-            value = 304
+            value = bpmparl_number_of_seats
         }
         change_variable = {
             name = bpm_seat_allocation

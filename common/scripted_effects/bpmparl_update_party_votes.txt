@@ -13,10 +13,10 @@ bpmparl_set_party_vote = {
     set_variable = {
         name = bpmparl_total_nay_votes
         value = {
-            value = 300
+            value = bpmparl_number_of_seats
             subtract = var:bpmparl_total_yea_votes
             min = 0
-            max = 300
+            max = bpmparl_number_of_seats
         }
     }
 }

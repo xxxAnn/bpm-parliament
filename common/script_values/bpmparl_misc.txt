@@ -17,3 +17,14 @@ bpmparl_total_nay_votes_sv = {
         add = var:bpmparl_total_nay_votes
     }
 }
+
+bpmparl_number_of_seats = {
+    value = 0
+
+    if = {
+        limit = {
+            always = yes
+        }
+        add = 306
+    }
+}
