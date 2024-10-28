@@ -10,6 +10,25 @@ bpmparl_set_party_vote = {
     bpmparl_set_party_vote_subp = { COLOR = orange PARTY = radical }
     bpmparl_set_party_vote_subp = { COLOR = pink PARTY = social_democrat }    
     bpmparl_set_party_vote_subp = { COLOR = red PARTY = communist }    
+    if = {
+        limit = {
+            any_active_party = { count = 0 }
+        }
+        every_interest_group = { 
+            limit = {
+                is_marginal = no
+                bpm_ig_law_support_total_value > 0    
+            }
+            owner = { change_variable = {
+                name = bpmparl_total_yea_votes
+                add = {
+                    value = prev.ig_clout
+                    multiply = bpmparl_number_of_seats
+                    round = yes
+                }
+            } }
+        }
+    }
     set_variable = {
         name = bpmparl_total_nay_votes
         value = {
@@ -19,29 +38,22 @@ bpmparl_set_party_vote = {
             max = bpmparl_number_of_seats
         }
     }
-    if = {
-		limit = {
-			any_active_party = {
-				count > 0
-			}
-		}
-		set_variable = { name = bpm_law_enactment_yea_votes_cached value = {
-			value = var:bpmparl_total_yea_votes
-            divide = bpmparl_number_of_seats
-		} }
-        set_variable = { name = bpm_law_enactment_nay_votes_cached value = {
-            value = var:bpmparl_total_nay_votes
-            divide = bpmparl_number_of_seats
-        } }
-	}
+
+    set_variable = { name = bpm_law_enactment_yea_votes_cached value = {
+        value = var:bpmparl_total_yea_votes
+        divide = bpmparl_number_of_seats
+    } }
+    set_variable = { name = bpm_law_enactment_nay_votes_cached value = {
+        value = var:bpmparl_total_nay_votes
+        divide = bpmparl_number_of_seats
+    } }
+
 }
 
 bpmparl_set_party_vote_subp = {
     if = {
         limit = {
-            any_active_party = {
-                count > 0
-            }
+            exists = py:$PARTY$_party
         }
         set_variable = {
             name = bpmparl_$PARTY$_yea_votes
@@ -59,13 +71,4 @@ bpmparl_set_party_vote_subp = {
             add = var:bpmparl_$PARTY$_yea_votes
         }
     } 
-    else = {
-        set_variable = {
-            name = bpmparl_$PARTY$_yea_votes
-            value = {
-                value = py:$PARTY$_party.bpmparl_party_yea_vote_percent
-                multiply = py:$PARTY$_party.bpmparl_party_total_clout
-            }
-        }
-    }
 }
