@@ -8,9 +8,9 @@ bpmparl_update_parliament_view = {
         name = bpm_parliament_number_of_rows
         value = {
             value = var:bpm_parliament_number_of_seats
-            divide = 45
+            divide = 40
             ceiling = yes
-            min = 6
+            min = 5
         }
     }
     set_variable = {

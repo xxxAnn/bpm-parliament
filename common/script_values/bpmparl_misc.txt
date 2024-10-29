@@ -23,9 +23,12 @@ bpmparl_number_of_seats = {
 
     if = {
         limit = {
-            always = yes
+            exists = scope:test
         }
-        add = 174
+        add = scope:test
+    }
+    else = {
+        add = 300
     }
 }
 
