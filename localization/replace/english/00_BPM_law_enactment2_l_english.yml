@@ -1,4 +1,4 @@
 ﻿l_english:
   bpm_law_yea_votes:2 "#P Yea#!\n#v #variable [GetPlayer.MakeScope.ScriptValue('bpmparl_total_yea_votes_sv')|v0]#!"
   bpm_law_nay_votes:2 "#N Nay#!\n#v #variable [GetPlayer.MakeScope.ScriptValue('bpmparl_total_nay_votes_sv')|v0]#!"
-
+  bpmparl_seat_number: "#v#0#!#!"

@@ -1,0 +1,299 @@
+bpmparl_seat_row = {
+    value = scope:seat_index
+    modulo = var:bpm_parliament_number_of_rows
+}
+
+bpmparl_seats_in_row_dispatch_parsum = {
+    value = 0
+    if = {
+        limit = {
+            scope:row_index = scope:len
+        }
+        add = bpmparl_seats_in_row
+    }
+    else = {
+        add = bpmparl_seats_in_row
+    }
+}
+
+bpmparl_seats_in_row_dispatch_neutral = {
+    value = 0
+    if = {
+        limit = {
+            scope:row_index = scope:len
+        }
+        add = bpmparl_seats_in_row
+    }
+    else = {
+        add = bpmparl_seats_in_row
+    }
+}
+
+bpmparl_seats_in_row = {
+    value = {
+        value = var:bpm_parliament_number_of_seats
+        subtract = {
+            value = var:bpm_parliament_number_of_rows
+            multiply = 24
+        }
+        multiply = 6
+    }
+
+    divide = {
+        value = {
+            value = var:bpm_parliament_number_of_rows
+            subtract = 1
+        }
+        multiply = var:bpm_parliament_number_of_rows
+        multiply = {
+            value = {
+                value = var:bpm_parliament_number_of_rows
+                subtract = 1
+            }
+            multiply = 2
+        }
+    }
+    multiply = {
+        value = scope:row_index
+        multiply = scope:row_index
+    }
+
+    add = 24
+
+    round = yes
+}
+
+bpmparl_seats_in_row_last_row = {
+    value = var:bpm_parliament_number_of_seats
+    subtract = var:bpm_parliament_number_of_seats_partial_sum
+}
+
+bpmparl_seats_in_row_last_row2 = {
+    value = var:bpm_parliament_number_of_seats
+    subtract = var:bpm_parliament_total_seats
+}
+
+## Node
+
+bpmparl_node_seats_in_row = {
+    value = {
+        value = var:bpm_parliament_number_of_seats
+        subtract = {
+            value = var:bpm_parliament_number_of_rows
+            multiply = 24
+        }
+        multiply = 6
+    }
+
+    divide = {
+        value = {
+            value = var:bpm_parliament_number_of_rows
+            subtract = 1
+        }
+        multiply = var:bpm_parliament_number_of_rows
+        multiply = {
+            value = {
+                value = var:bpm_parliament_number_of_rows
+                subtract = 1
+            }
+            multiply = 2
+        }
+    }
+    multiply = {
+        value = bpmparl_node_row
+        multiply = bpmparl_node_row
+    }
+
+    add = 24
+
+    round = yes
+}
+
+bpmparl_node_angle = {
+    if = {
+        limit = {
+            bpmparl_node_angle_raw > 1.5708
+        }
+        value = 3.14159
+        subtract = bpmparl_node_angle_raw
+    } else = {
+        value = bpmparl_node_angle_raw
+    }
+}
+
+bpmparl_node_angle_raw = {
+    value = 3.14159
+    divide = bpmparl_node_seats_in_row
+    multiply = bpmparl_node_raw_index
+}
+
+bpmparl_node_seat_halfway = {
+    value = bpmparl_node_seats_in_row
+    divide = 2
+}
+
+bpmparl_node_angle_100 = {
+    value = bpmparl_node_angle
+    multiply = 100
+}
+
+bpmparl_node_angle_cosine = {
+
+    value = 1
+    subtract = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 2
+    }
+    add = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 24
+    }
+    subtract = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 720
+    }
+    add = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 40320
+    }
+}
+
+bpmparl_node_angle_sine = {
+    value = bpmparl_node_angle
+    subtract = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 6
+    }
+    add = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 120
+    }
+    subtract = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 5040
+    }
+    add = {
+        value = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        multiply = bpmparl_node_angle
+        divide = 362880
+    }
+}
+
+bpmparl_node_radius = {
+    value = 200
+    subtract = {
+        value = bpmparl_node_row_sub
+        multiply = 12
+    }
+}
+
+bpmparl_node_XCENTER = 300
+bpmparl_node_YCENTER = 140
+
+bpmparl_node_position_x = { 
+    value = bpmparl_node_XCENTER
+    if = {
+        limit = {
+            bpmparl_node_angle_raw > 1.5708
+        }
+        subtract = bpmparl_node_position_x_raw
+    } else = {
+        add = bpmparl_node_position_x_raw
+    }
+}
+
+bpmparl_node_position_y = {
+    value = bpmparl_node_YCENTER
+    multiply = 1.5
+    if = {
+        limit = {
+            bpmparl_node_angle_raw > 1.5708
+        }
+        subtract = bpmparl_node_position_y_raw
+    } else = {
+        subtract = bpmparl_node_position_y_raw
+    }
+}
+
+bpmparl_node_position_x_raw = {
+    #value = bpmparl_node_XCENTER
+    value = {
+        value = bpmparl_node_radius
+        multiply = bpmparl_node_angle_cosine
+    }
+}
+
+bpmparl_node_position_y_raw = {
+    value = {
+        value = bpmparl_node_radius
+        multiply = bpmparl_node_angle_sine
+    }
+}
+
+bpmparl_node_raw_index = {
+    value = scope:seat_value
+    modulo = 100
+}
+
+bpmparl_node_row = {
+    value = var:bpm_parliament_number_of_rows   
+    subtract = {
+        value = bpmparl_node_row_sub
+    }
+    add = 0
+}
+
+bpmparl_node_row_sub = {
+    value = scope:seat_value
+    subtract = {
+        value = scope:seat_value
+        modulo = 100
+    }
+    divide = 100
+    modulo = 100
+}
+
+bpmparl_node_index = {
+    value = scope:seat_value
+    subtract = {
+        value = bpmparl_node_index
+        multiply = 100
+    }
+    subtract = {
+        value = bpmparl_node_raw_index
+    }
+    divide = 10000
+}

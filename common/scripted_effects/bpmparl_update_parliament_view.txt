@@ -1,0 +1,98 @@
+bpmparl_update_parliament_view = {
+    clear_variable_list = bpm_parliament_seat_nodes
+    set_variable = {
+        name = bpm_parliament_number_of_seats
+        value = bpmparl_number_of_seats
+    }
+    set_variable = {
+        name = bpm_parliament_number_of_rows
+        value = {
+            value = var:bpm_parliament_number_of_seats
+            divide = 45
+            ceiling = yes
+            min = 6
+        }
+    }
+    set_variable = {
+        name = bpm_parliament_row_counter_loop
+        value = 0 
+    }
+    set_variable = {
+        name = bpm_parliament_total_seats
+        value = 0 
+    }
+    while = {
+        count = var:bpm_parliament_number_of_rows
+        save_scope_value_as = { name = row_index value = var:bpm_parliament_row_counter_loop }
+        save_scope_value_as = { name = len value = { value = var:bpm_parliament_number_of_rows subtract = 1 } }
+        set_variable = {
+            name = bpmparl_seats_in_row
+            value = bpmparl_seats_in_row_dispatch_neutral
+        }
+        set_variable = {
+            name = bpm_parliament_seat_counter_loop
+            value = 0
+        }
+        set_variable = {
+            name = bpm_offset_row_counter
+            value = scope:offset
+        }
+
+        save_scope_value_as = { name = count_before value = scope:row_index }
+        bpmparl_update_parliament_view_calculate_parsum = yes
+        while = {
+            count = var:bpmparl_seats_in_row
+            save_scope_value_as = {
+                name = result
+                value = {
+                    # index in the row
+                    value = var:bpm_parliament_seat_counter_loop
+                    # overall index
+                    add = {
+                        value = 0
+                    }
+                    # row
+                    add = {
+                        value = {
+                            value = var:bpm_parliament_number_of_rows
+                            subtract = var:bpm_parliament_row_counter_loop
+                        }
+                        multiply = 100
+                    }
+                }
+            }
+            add_to_variable_list = {
+                name = bpm_parliament_seat_nodes
+                target = scope:result
+            }
+            change_variable = {
+                name = bpm_parliament_seat_counter_loop
+                add = 1
+            }
+            change_variable = {
+                name = bpm_parliament_total_seats
+                add = 1
+            }
+        }
+        change_variable = { name = bpm_parliament_row_counter_loop add = 1 }
+    }
+    set_variable ={
+        name = bpm_parliament_actual_number_of_seats
+        value = var:bpm_parliament_total_seats
+    }
+}
+
+bpmparl_update_parliament_view_calculate_parsum = {
+    set_variable = { name = bpm_parliament_number_of_seats_partial_sum value = 0 }
+    set_variable = { name = bpmparl_parsum_calculator value = 0 }
+    while = {
+        count = { value = scope:count_before }
+
+        save_scope_value_as = { name = len value = { value = var:bpm_parliament_number_of_rows subtract = 1 } }
+        save_scope_value_as = { name = row_index value = var:bpmparl_parsum_calculator }
+        change_variable = { name = bpm_parliament_number_of_seats_partial_sum add = bpmparl_seats_in_row_dispatch_parsum }
+
+        change_variable = { name = bpmparl_parsum_calculator add = 1 }
+    }
+    save_scope_value_as = { name = offset value = var:bpm_parliament_number_of_seats_partial_sum }
+}

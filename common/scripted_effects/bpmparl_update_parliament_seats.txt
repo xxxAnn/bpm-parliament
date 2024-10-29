@@ -131,6 +131,8 @@ bpmparl_update_parliament_seats = {
             value = 0
         }
     }
+
+    bpmparl_update_parliament_view = yes
 }
 
 bpmparl_update_parliament_seats_proportional = {

@@ -25,6 +25,23 @@ bpmparl_number_of_seats = {
         limit = {
             always = yes
         }
-        add = 300
+        add = 174
     }
 }
+
+bpmparl_number_of_seats_cached = {
+    value = 0
+    if = {
+        limit = {
+            has_variable = bpm_parliament_actual_number_of_seats
+        }
+        add = var:bpm_parliament_actual_number_of_seats
+    }
+}
+
+bpmparl_test = {
+    value = 0
+    add = scope:test
+    multiply = 15
+}
+

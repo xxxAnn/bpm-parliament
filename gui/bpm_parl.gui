@@ -9,22 +9,26 @@ types politics_panel_types
 
 		visible = "[GreaterThan_CFixedPoint(Country.MakeScope.Var('bpm_allocated_seats').GetValue, '(CFixedPoint)5')]"
 
+		
+
+
+
 		textbox = {
 			layoutpolicy_horizontal = expanding
-			text = "#v#b 300 #!#!"
+			text = "[Country.MakeScope.ScriptValue('bpmparl_number_of_seats_cached')]"
 			using = fontsize_mega
 			align = left|nobaseline
 			position = { 285 200 }
 		}
-	
-		bpm_parliament_visual_red = {}
-		bpm_parliament_visual_green = {}
+	 
+		#bpm_parliament_visual_red = {}
+		#bpm_parliament_visual_green = {}
 		bpm_parliament_visual_yellow = {}
-		bpm_parliament_visual_blue = {}
-		bpm_parliament_visual_grey = {}
-		bpm_parliament_visual_purple = {}
-		bpm_parliament_visual_orange = {}
-		bpm_parliament_visual_pink = {}
+		#bpm_parliament_visual_blue = {}
+		#bpm_parliament_visual_grey = {}
+		#bpm_parliament_visual_purple = {}
+		#bpm_parliament_visual_orange = {}
+		#bpm_parliament_visual_pink = {}
 
 	}
 }
