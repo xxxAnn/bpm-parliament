@@ -3,16 +3,23 @@ bpmparl_seat_row = {
     modulo = var:bpm_parliament_number_of_rows
 }
 
-bpmparl_seats_in_row_dispatch_parsum = {
+bpmparl_seat_row_len = {
+    value = var:bpm_parliament_number_of_rows
+    subtract = {
+        value = 1
+    }
+}
+
+bpmparl_seats_in_row_dispatch_raw = {
     value = 0
     if = {
         limit = {
-            scope:row_index = scope:len
+            bpmparl_node_row = bpmparl_seat_row_len
         }
-        add = bpmparl_seats_in_row
+        add = bpmparl_seats_in_row_last_row
     }
     else = {
-        add = bpmparl_seats_in_row
+        add = bpmparl_node_seats_in_row
     }
 }
 
@@ -20,14 +27,25 @@ bpmparl_seats_in_row_dispatch_neutral = {
     value = 0
     if = {
         limit = {
-            scope:row_index = scope:len
+            scope:row_index = bpmparl_seat_row_len
         }
-        add = bpmparl_seats_in_row
+        add = bpmparl_seats_in_row_last_row2
     }
     else = {
         add = bpmparl_seats_in_row
     }
 }
+
+bpmparl_seats_in_row_last_row = {
+    value = var:bpm_seats_in_last_row_raw
+}
+
+bpmparl_seats_in_row_last_row2 = {
+    value = var:bpm_parliament_number_of_seats
+    subtract = var:bpm_parliament_total_seats
+}
+
+## Node
 
 bpmparl_seats_in_row = {
     value = {
@@ -62,18 +80,6 @@ bpmparl_seats_in_row = {
 
     round = yes
 }
-
-bpmparl_seats_in_row_last_row = {
-    value = var:bpm_parliament_number_of_seats
-    subtract = var:bpm_parliament_number_of_seats_partial_sum
-}
-
-bpmparl_seats_in_row_last_row2 = {
-    value = var:bpm_parliament_number_of_seats
-    subtract = var:bpm_parliament_total_seats
-}
-
-## Node
 
 bpmparl_node_seats_in_row = {
     value = {
@@ -124,14 +130,14 @@ bpmparl_node_angle = {
 bpmparl_node_angle_raw = {
     value = 3.14159
     divide = {
-        value = bpmparl_node_seats_in_row
+        value = bpmparl_seats_in_row_dispatch_raw
         subtract = 1
     }
     multiply = bpmparl_node_raw_index
 }
 
 bpmparl_node_seat_halfway = {
-    value = bpmparl_node_seats_in_row
+    value = bpmparl_seats_in_row_dispatch_raw
     divide = 2
 }
 
@@ -276,6 +282,7 @@ bpmparl_node_row = {
     subtract = {
         value = bpmparl_node_row_sub
     }
+    round = yes
 }
 
 bpmparl_node_row_sub = {

@@ -7,18 +7,48 @@ types politics_panel_types
         using = tooltip_below
 		#visible = "[And(Country.MakeScope.Var('bpm_yellow_parl_max').IsSet, Country.MakeScope.Var('bpm_yellow_parl_min').IsSet)]"
         #using = entry_bg_fancy
-		
+			#expand = {}
+		#button = {
+		#	position = { 225 15 }
+		#	size = { 150 30 }
+		#	using = default_button_primary
+		#	onclick = "[GetVariableSystem.Toggle('hide_parl')]"
+		#	using = back_button_sound
+#
+		#	textbox = {
+		#		size = { 100% 100% }
+		#		text = "Toggle"
+		#		using = fontsize_large
+		#		align = center|nobaseline
+		#	}
+		#}
+		#expand = {}
+		#state = {
+		#	name = 1
+		#	next = 2
+		#}
+#
+		#state = {
+		#	name = 2
+		#	next = 1
+		#	trigger_when = "[Not(GetVariableSystem.Exists('hide_parl'))]"
+#
+		#	duration = 0.1
+		#	size = { 250 280 }
+		#}
 		widget = {
 			datamodel = "[Country.MakeScope.GetList('bpm_parliament_seat_nodes')]"
+			max_update_rate = 100
 			item = {
 				icon = {
 					texture = gfx/interface/icons/grey_circle.dds
 					size = {10 10}
+					visible = "[Not(GetVariableSystem.Exists('hide_parl'))]"
 					#position = {416 210}
 					state = {
 						name = 1
-						next = 1
-						trigger_when = "[InformationPanelBar.IsPanelTabOpen('politics', 'interest_groups')]"
+						next = 2
+						trigger_on_create = yes
 						duration = 0.1
 						position_x = "[GuiScope.SetRoot(Country.MakeScope).AddScope('seat_value', MakeScopeValue(Scope.GetValue)).ScriptValue('bpmparl_node_position_x')]"
 						position_y = "[GuiScope.SetRoot(Country.MakeScope).AddScope('seat_value', MakeScopeValue(Scope.GetValue)).ScriptValue('bpmparl_node_position_y')]"
@@ -35,6 +65,7 @@ types politics_panel_types
 				}
 			}
 		}
+		
 
     }
 

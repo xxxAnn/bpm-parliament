@@ -132,7 +132,13 @@ bpmparl_update_parliament_seats = {
         }
     }
 
-    bpmparl_update_parliament_view = yes
+    if = {
+        limit = {
+            is_player = yes
+        }
+        bpmparl_update_parliament_view = yes
+        bpmparl_update_parliament_view = yes
+    }
 }
 
 bpmparl_update_parliament_seats_proportional = {
@@ -176,10 +182,6 @@ bpmparl_update_parliament_seats_proportional = {
         set_variable = {
             name = bpm_$COLOR$_parl_max
             value = var:bpm_allocated_seats
-        }
-        change_variable = {
-            name = bpm_allocated_seats
-            add = 1
         }
     }
 }
@@ -288,10 +290,6 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
         set_variable = {
             name = bpm_$COLOR$_parl_max
             value = var:bpm_allocated_seats
-        }
-        change_variable = {
-            name = bpm_allocated_seats
-            add = 1
         }
     }
 }
@@ -404,10 +402,6 @@ bpmparl_update_parliament_seats_electoral_college = {
         set_variable = {
             name = bpm_$COLOR$_parl_max
             value = var:bpm_allocated_seats
-        }
-        change_variable = {
-            name = bpm_allocated_seats
-            add = 1
         }
     }
 }
