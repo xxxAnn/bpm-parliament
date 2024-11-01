@@ -62,6 +62,7 @@ bpmparl_set_party_vote_subp = {
                 multiply = {
                     value = var:bpm_$COLOR$_parl_max
                     subtract = var:bpm_$COLOR$_parl_min
+                    min = 0
                 }
                 ceiling = yes
             }
