@@ -25,7 +25,17 @@ bpmparl_party_yea_vote_percent = {
 
 bpmparl_state_pop_percentage = {
     value = state_population
-    divide = owner.total_population
+    divide = owner.bpmparl_incorporated_population
+}
+
+bpmparl_incorporated_population = {
+    value = 0
+    every_scope_state = {
+        limit = {
+            is_incorporated = yes
+        }
+        add = state_population
+    }
 }
 
 bpmparl_pol_strength_share = {

@@ -88,6 +88,9 @@ bpmparl_update_parliament_seats = {
             always = yes
         }
         every_scope_state = {
+            limit = {
+                is_incorporated = yes
+            }
             set_variable = {
                 name = bpm_state_total_pts
                 value = 0
@@ -189,11 +192,17 @@ bpmparl_update_parliament_seats_majoritarian_fptp_pre = {
         }
     
         every_scope_state = {
+            limit = {
+                is_incorporated = yes
+            }
             save_scope_as = target_state
             owner = {
                 set_variable = {
                     name = bpm_this_party_state_pts
-                    value = py:$PARTY$_party.bpmparl_pol_strength_share
+                    value = {
+                        value = py:$PARTY$_party.bpmparl_pol_strength_share
+                        multiply = owner.var:bpm_party_$PARTY$_voting_power
+                    }
                 }
             }
             #debug_log = owner.var:bpm_this_party_state_pts
@@ -237,6 +246,9 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
             value = 0
         }
         every_scope_state = {
+            limit = {
+                is_incorporated = yes
+            }
             save_scope_as = target_state
             set_variable = {
                 name = bpm_$PARTY$_votes_in_state
@@ -259,7 +271,7 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                     name = bpm_current_seat_allocation
                     add = {
                         value = prev.var:bpm_total_seats_in_state
-                        multiply = bpmparl_square_root
+                        multiply = scope:target_state.var:bpm_$PARTY$_votes_in_state
                     }
                 }
                 set_variable = { name = bpm_current_seat_allocation value = { value = var:bpm_current_seat_allocation round = yes } }
