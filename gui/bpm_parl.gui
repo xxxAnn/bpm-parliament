@@ -17,56 +17,98 @@ types politics_panel_types
 		#	position = { 285 200 }
 		#}
 
-
-
-
-
-
-
         icon = {
-            texture = gfx/interface/icons/states/CONNECTICUT_RED.dds
+            texture = gfx/interface/icons/states/ALABAMA_BLUE.dds
+            position = { 334.0 298.0 }
+            size = { 48.0 65.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/CONNECTICUT_BLUE.dds
             position = { 530.0 205.0 }
             size = { 26.0 15.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/DELAWARE_RED.dds
+            texture = gfx/interface/icons/states/DELAWARE_YELLOW.dds
             position = { 503.0 234.0 }
             size = { 11.0 19.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/GEORGIA_BLUE.dds
+            texture = gfx/interface/icons/states/GEORGIA_YELLOW.dds
             position = { 372.0 299.0 }
             size = { 64.0 62.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/MARYLAND_RED.dds
+            texture = gfx/interface/icons/states/ILLINOIS_BLUE.dds
+            position = { 293.0 198.0 }
+            size = { 60.0 74.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/INDIANA_YELLOW.dds
+            position = { 339.0 208.0 }
+            size = { 44.0 53.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/KENTUCKY_YELLOW.dds
+            position = { 319.0 243.0 }
+            size = { 101.0 35.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/LOUISIANA_BLUE.dds
+            position = { 260.0 325.0 }
+            size = { 70.0 56.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/MAINE_BLUE.dds
+            position = { 566.0 132.0 }
+            size = { 56.0 61.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/MARYLAND_YELLOW.dds
             position = { 454.0 236.0 }
             size = { 60.0 24.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/MASSACHUSETTS_RED.dds
+            texture = gfx/interface/icons/states/MASSACHUSETTS_YELLOW.dds
             position = { 533.0 193.0 }
             size = { 49.0 23.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/NEW_HAMPSHIRE_RED.dds
+            texture = gfx/interface/icons/states/MISSISSIPPI_BLUE.dds
+            position = { 291.0 299.0 }
+            size = { 47.0 65.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/MISSOURI_BLUE.dds
+            position = { 237.0 224.0 }
+            size = { 89.0 62.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/NEW_HAMPSHIRE_BLUE.dds
             position = { 546.0 161.0 }
             size = { 26.0 35.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/NEW_JERSEY_RED.dds
+            texture = gfx/interface/icons/states/NEW_JERSEY_BLUE.dds
             position = { 506.0 214.0 }
             size = { 22.0 34.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/NEW_YORK_RED.dds
+            texture = gfx/interface/icons/states/NEW_YORK_BLUE.dds
             position = { 450.0 165.0 }
             size = { 106.0 61.0 }
         }
@@ -78,21 +120,45 @@ types politics_panel_types
         }
     
         icon = {
-            texture = gfx/interface/icons/states/PENNSYLVANIA_RED.dds
+            texture = gfx/interface/icons/states/OHIO_YELLOW.dds
+            position = { 383.0 201.0 }
+            size = { 57.0 52.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/PENNSYLVANIA_BLUE.dds
             position = { 440.0 200.0 }
             size = { 78.0 37.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/RHODE_ISLAND_RED.dds
+            texture = gfx/interface/icons/states/RHODE_ISLAND_BLUE.dds
             position = { 555.0 205.0 }
             size = { 11.0 12.0 }
         }
     
         icon = {
-            texture = gfx/interface/icons/states/SOUTH_CAROLINA_BLUE.dds
+            texture = gfx/interface/icons/states/SOUTH_CAROLINA_YELLOW.dds
             position = { 402.0 296.0 }
             size = { 65.0 43.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/TENNESSEE_YELLOW.dds
+            position = { 309.0 276.0 }
+            size = { 116.0 23.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/TENNESSEE_YELLOW.dds
+            position = { 309.0 276.0 }
+            size = { 116.0 23.0 }
+        }
+    
+        icon = {
+            texture = gfx/interface/icons/states/VERMONT_YELLOW.dds
+            position = { 534.0 165.0 }
+            size = { 26.0 31.0 }
         }
     
         icon = {
@@ -100,6 +166,7 @@ types politics_panel_types
             position = { 398.0 239.0 }
             size = { 113.0 39.0 }
         }
+    
         
 	
 		#bpm_parliament_visual_red = {}
