@@ -1,0 +1,32 @@
+bpm_calculate_seat_count = {
+    bpm_calculate_seat_count_subp = { COLOR = brown PARTY = fascist }
+    bpm_calculate_seat_count_subp = { COLOR = purple PARTY = reactionary }
+    bpm_calculate_seat_count_subp = { COLOR = blue PARTY = conservative }
+    bpm_calculate_seat_count_subp = { COLOR = yellow PARTY = liberal }
+    bpm_calculate_seat_count_subp = { COLOR = green PARTY = agrarian }
+    bpm_calculate_seat_count_subp = { COLOR = orange PARTY = radical }
+    bpm_calculate_seat_count_subp = { COLOR = pink PARTY = social_democrat }
+    bpm_calculate_seat_count_subp = { COLOR = red PARTY = communist }    
+    bpm_calculate_seat_count_subp = { COLOR = black PARTY = anarchist }
+}
+
+bpm_calculate_seat_count_subp = {
+    set_variable = {
+        name = bpm_seat_count_$PARTY$
+        value = {
+            value = var:bpm_$COLOR$_parl_max
+            subtract = var:bpm_$COLOR$_parl_min
+        }
+    }
+    if = {
+        limit = { has_variable = bpm_pointer_$PARTY$_party }
+        remove_variable = bpm_pointer_$PARTY$_party
+    }
+    if = {
+        limit = { exists = py:$PARTY$_party }
+        set_variable = {
+            name = bpm_pointer_$PARTY$_party
+            value = py:$PARTY$_party
+        }
+    }
+}

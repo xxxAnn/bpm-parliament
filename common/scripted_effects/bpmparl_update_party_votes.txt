@@ -3,6 +3,7 @@ bpmparl_set_party_vote = {
         name = bpmparl_total_yea_votes
         value = 0
     }
+    bpmparl_set_party_vote_subp = { COLOR = brown PARTY = fascist }    
     bpmparl_set_party_vote_subp = { COLOR = purple PARTY = reactionary }
     bpmparl_set_party_vote_subp = { COLOR = blue PARTY = conservative }
     bpmparl_set_party_vote_subp = { COLOR = yellow PARTY = liberal }
@@ -10,6 +11,7 @@ bpmparl_set_party_vote = {
     bpmparl_set_party_vote_subp = { COLOR = orange PARTY = radical }
     bpmparl_set_party_vote_subp = { COLOR = pink PARTY = social_democrat }    
     bpmparl_set_party_vote_subp = { COLOR = red PARTY = communist }    
+    bpmparl_set_party_vote_subp = { COLOR = black PARTY = anarchist }    
     if = {
         limit = {
             any_active_party = { count = 0 }
