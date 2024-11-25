@@ -103,10 +103,10 @@ bpmparl_update_parliament_seats = {
                 value = 0
             }
         }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = liberal }
+        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = conservative }
         bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = fascist }
         bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = reactionary }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = conservative }
-        bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = liberal }
         bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = agrarian }
         bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = radical }
         bpmparl_update_parliament_seats_majoritarian_fptp_pre = { PARTY = social_democrat }
@@ -278,7 +278,10 @@ bpmparl_update_parliament_seats_majoritarian_fptp = {
                     name = value
                     value = {
                         value = scope:target_state.var:bpm_$PARTY$_votes_in_state
-                        multiply = var:bpm_party_$PARTY$_voting_power
+                        multiply = {
+                            value = var:bpm_party_$PARTY$_voting_power
+                            multiply = 1.1
+                        }
                     }
                 }
                 change_variable = {
