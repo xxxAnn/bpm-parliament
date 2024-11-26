@@ -14,7 +14,7 @@ bpm_set_ig_party_whip_enacting_law_change_steps = {
 			value = {
 				add = var:bpm_most_powerful_ig.var:bpm_ig_enacting_law_stance
 				subtract = var:bpm_most_powerful_ig.var:bpm_ig_current_law_stance
-				multiply = 8
+				multiply = 2
 			}
 		}
 	}
