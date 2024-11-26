@@ -3,7 +3,21 @@ bpm_update_law_enactment_variables_modifiers = {
 	bpm_cache_nay_votes = yes
 	bpm_apply_law_vote_contribution_modifier = yes
     bpmparl_set_party_vote = yes
+}
 
+bpm_set_ig_party_whip_enacting_law_change_steps = {
+	if = {
+		limit = { has_variable = bpm_most_powerful_ig }
+		set_variable = {
+			name = bpm_ig_party_whip_enacting_law_change_steps
+			# Unweighted law support
+			value = {
+				add = var:bpm_most_powerful_ig.var:bpm_ig_enacting_law_stance
+				subtract = var:bpm_most_powerful_ig.var:bpm_ig_current_law_stance
+				multiply = 8
+			}
+		}
+	}
 }
 
 bpm_cache_yea_votes = {
