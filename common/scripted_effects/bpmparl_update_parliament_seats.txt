@@ -122,7 +122,7 @@ bpmparl_update_parliament_seats = {
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = red PARTY = communist } 
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = black PARTY = anarchist } 
 
-
+        bpmparl_give_empty_seats = yes
     }
 
 
@@ -133,6 +133,13 @@ bpmparl_update_parliament_seats = {
     set_variable = {
         name = bpm_grey_parl_max
         value = 1000
+    }
+    set_variable = {
+        name = bpm_unallocated_seats
+        value = {
+            value = bpmparl_number_of_seats
+            subtract = var:bpm_allocated_seats
+        }
     }
 
     if = {
