@@ -10,8 +10,10 @@ bpmparl_give_empty_seats = {
     remove_variable = bpmparl_has_seen_winning_party
     bpmparl_set_party_seat_count_cache = { COLOR = brown PARTY = fascist }
     bpmparl_set_party_seat_count_cache = { COLOR = purple PARTY = reactionary }
+    bpmparl_set_party_seat_count_cache = { COLOR = violet PARTY = military }
     bpmparl_set_party_seat_count_cache = { COLOR = blue PARTY = conservative }
     bpmparl_set_party_seat_count_cache = { COLOR = yellow PARTY = liberal }
+    bpmparl_set_party_seat_count_cache = { COLOR = dark_red PARTY = free_trade }
     bpmparl_set_party_seat_count_cache = { COLOR = green PARTY = agrarian }
     bpmparl_set_party_seat_count_cache = { COLOR = orange PARTY = radical }
     bpmparl_set_party_seat_count_cache = { COLOR = pink PARTY = social_democrat }
@@ -19,8 +21,10 @@ bpmparl_give_empty_seats = {
     bpmparl_set_party_seat_count_cache = { COLOR = black PARTY = anarchist }
     bpmparl_give_empty_seats_subp = { COLOR = brown PARTY = fascist }
     bpmparl_give_empty_seats_subp = { COLOR = purple PARTY = reactionary }
+    bpmparl_give_empty_seats_subp = { COLOR = violet PARTY = military }
     bpmparl_give_empty_seats_subp = { COLOR = blue PARTY = conservative }
     bpmparl_give_empty_seats_subp = { COLOR = yellow PARTY = liberal }
+    bpmparl_give_empty_seats_subp = { COLOR = dark_red PARTY = free_trade }
     bpmparl_give_empty_seats_subp = { COLOR = green PARTY = agrarian }
     bpmparl_give_empty_seats_subp = { COLOR = orange PARTY = radical }
     bpmparl_give_empty_seats_subp = { COLOR = pink PARTY = social_democrat }
