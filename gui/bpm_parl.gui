@@ -26,6 +26,10 @@ types politics_panel_types
 		bpm_parliament_visual_purple = {}
 		bpm_parliament_visual_orange = {}
 		bpm_parliament_visual_pink = {}
+		bpm_parliament_visual_black = {}
+		bpm_parliament_visual_brown = {}
+		bpm_parliament_visual_violet = {}
+		bpm_parliament_visual_dark_red = {}
 
 	}
 }
