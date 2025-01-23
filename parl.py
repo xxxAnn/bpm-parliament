@@ -93,7 +93,6 @@ types politics_panel_types
 """
     return fres
 
-# added colors for mpp
 with open("output.txt", "w") as f:
     f.write(make_parliaments(["yellow", "blue", "green", "red", "grey", "orange", "purple", "pink", "black", "brown", "violet", "dark_red"]))
 
