@@ -44,7 +44,7 @@ bpmparl_update_parliament_seats = {
 	bpmparl_update_parliament_seats_proportional = { COLOR = violet PARTY = military }
         bpmparl_update_parliament_seats_proportional = { COLOR = blue PARTY = conservative }
         bpmparl_update_parliament_seats_proportional = { COLOR = yellow PARTY = liberal }
-	bpmparl_update_parliament_seats_proportional = { COLOR = dark_red PARTY = free_trade }
+	bpmparl_update_parliament_seats_proportional = { COLOR = teal PARTY = free_trade }
         bpmparl_update_parliament_seats_proportional = { COLOR = green PARTY = agrarian }
         bpmparl_update_parliament_seats_proportional = { COLOR = orange PARTY = radical }
         bpmparl_update_parliament_seats_proportional = { COLOR = pink PARTY = social_democrat }
@@ -87,7 +87,7 @@ bpmparl_update_parliament_seats = {
 	bpmparl_update_parliament_seats_electoral_college = { COLOR = violet PARTY = military }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = blue PARTY = conservative }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = yellow PARTY = liberal }
-	bpmparl_update_parliament_seats_electoral_college = { COLOR = dark_red PARTY = free_trade }
+	bpmparl_update_parliament_seats_electoral_college = { COLOR = teal PARTY = free_trade }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = green PARTY = agrarian }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = orange PARTY = radical }
         bpmparl_update_parliament_seats_electoral_college = { COLOR = pink PARTY = social_democrat }
@@ -125,7 +125,7 @@ bpmparl_update_parliament_seats = {
 	bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = violet PARTY = military }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = blue PARTY = conservative }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = yellow PARTY = liberal }
-	bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = dark_red PARTY = free_trade }  
+	bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = teal PARTY = free_trade }  
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = green PARTY = agrarian }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = orange PARTY = radical }
         bpmparl_update_parliament_seats_majoritarian_fptp = { COLOR = pink PARTY = social_democrat }    

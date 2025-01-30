@@ -4,7 +4,7 @@ bpm_calculate_seat_count = {
     bpm_calculate_seat_count_subp = { COLOR = violet PARTY = military }
     bpm_calculate_seat_count_subp = { COLOR = blue PARTY = conservative }
     bpm_calculate_seat_count_subp = { COLOR = yellow PARTY = liberal }
-    bpm_calculate_seat_count_subp = { COLOR = dark_red PARTY = free_trade }
+    bpm_calculate_seat_count_subp = { COLOR = teal PARTY = free_trade }
     bpm_calculate_seat_count_subp = { COLOR = green PARTY = agrarian }
     bpm_calculate_seat_count_subp = { COLOR = orange PARTY = radical }
     bpm_calculate_seat_count_subp = { COLOR = pink PARTY = social_democrat }
